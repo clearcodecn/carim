@@ -1,18 +1,3 @@
 syntax = "proto3";
 
 option go_package = "proto";
-
-service CarImPusher {
-  rpc AddFriend(AddFriendRequest) returns (AddFriendReply);
-}
-
-message AddFriendRequest {
-  int64 senderId = 1;
-  int64 toId = 2;
-  string senderNo = 3;
-  string toNo = 4;
-  string head = 5;
-  string nickname = 6;
-}
-
-message AddFriendReply{}

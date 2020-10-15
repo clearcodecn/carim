@@ -24,138 +24,246 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type AddFriendRequest struct {
-	SenderId             int64    `protobuf:"varint,1,opt,name=senderId,proto3" json:"senderId,omitempty"`
-	ToId                 int64    `protobuf:"varint,2,opt,name=toId,proto3" json:"toId,omitempty"`
-	SenderNo             string   `protobuf:"bytes,3,opt,name=senderNo,proto3" json:"senderNo,omitempty"`
-	ToNo                 string   `protobuf:"bytes,4,opt,name=toNo,proto3" json:"toNo,omitempty"`
-	Head                 string   `protobuf:"bytes,5,opt,name=head,proto3" json:"head,omitempty"`
-	Nickname             string   `protobuf:"bytes,6,opt,name=nickname,proto3" json:"nickname,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+type MsgType int32
+
+const (
+	MsgType_unknownMsgType MsgType = 0
+	MsgType_Text           MsgType = 1
+	MsgType_Audio          MsgType = 2
+	MsgType_Video          MsgType = 3
+)
+
+var MsgType_name = map[int32]string{
+	0: "unknownMsgType",
+	1: "Text",
+	2: "Audio",
+	3: "Video",
 }
 
-func (m *AddFriendRequest) Reset()         { *m = AddFriendRequest{} }
-func (m *AddFriendRequest) String() string { return proto.CompactTextString(m) }
-func (*AddFriendRequest) ProtoMessage()    {}
-func (*AddFriendRequest) Descriptor() ([]byte, []int) {
+var MsgType_value = map[string]int32{
+	"unknownMsgType": 0,
+	"Text":           1,
+	"Audio":          2,
+	"Video":          3,
+}
+
+func (x MsgType) String() string {
+	return proto.EnumName(MsgType_name, int32(x))
+}
+
+func (MsgType) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_33f3a5e1293a7bcd, []int{0}
 }
 
-func (m *AddFriendRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_AddFriendRequest.Unmarshal(m, b)
-}
-func (m *AddFriendRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_AddFriendRequest.Marshal(b, m, deterministic)
-}
-func (m *AddFriendRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddFriendRequest.Merge(m, src)
-}
-func (m *AddFriendRequest) XXX_Size() int {
-	return xxx_messageInfo_AddFriendRequest.Size(m)
-}
-func (m *AddFriendRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_AddFriendRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_AddFriendRequest proto.InternalMessageInfo
-
-func (m *AddFriendRequest) GetSenderId() int64 {
-	if m != nil {
-		return m.SenderId
-	}
-	return 0
-}
-
-func (m *AddFriendRequest) GetToId() int64 {
-	if m != nil {
-		return m.ToId
-	}
-	return 0
-}
-
-func (m *AddFriendRequest) GetSenderNo() string {
-	if m != nil {
-		return m.SenderNo
-	}
-	return ""
-}
-
-func (m *AddFriendRequest) GetToNo() string {
-	if m != nil {
-		return m.ToNo
-	}
-	return ""
-}
-
-func (m *AddFriendRequest) GetHead() string {
-	if m != nil {
-		return m.Head
-	}
-	return ""
-}
-
-func (m *AddFriendRequest) GetNickname() string {
-	if m != nil {
-		return m.Nickname
-	}
-	return ""
-}
-
-type AddFriendReply struct {
+type PushToIDRequest struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *AddFriendReply) Reset()         { *m = AddFriendReply{} }
-func (m *AddFriendReply) String() string { return proto.CompactTextString(m) }
-func (*AddFriendReply) ProtoMessage()    {}
-func (*AddFriendReply) Descriptor() ([]byte, []int) {
+func (m *PushToIDRequest) Reset()         { *m = PushToIDRequest{} }
+func (m *PushToIDRequest) String() string { return proto.CompactTextString(m) }
+func (*PushToIDRequest) ProtoMessage()    {}
+func (*PushToIDRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_33f3a5e1293a7bcd, []int{0}
+}
+
+func (m *PushToIDRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PushToIDRequest.Unmarshal(m, b)
+}
+func (m *PushToIDRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PushToIDRequest.Marshal(b, m, deterministic)
+}
+func (m *PushToIDRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PushToIDRequest.Merge(m, src)
+}
+func (m *PushToIDRequest) XXX_Size() int {
+	return xxx_messageInfo_PushToIDRequest.Size(m)
+}
+func (m *PushToIDRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PushToIDRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PushToIDRequest proto.InternalMessageInfo
+
+type PushToIDReply struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PushToIDReply) Reset()         { *m = PushToIDReply{} }
+func (m *PushToIDReply) String() string { return proto.CompactTextString(m) }
+func (*PushToIDReply) ProtoMessage()    {}
+func (*PushToIDReply) Descriptor() ([]byte, []int) {
 	return fileDescriptor_33f3a5e1293a7bcd, []int{1}
 }
 
-func (m *AddFriendReply) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_AddFriendReply.Unmarshal(m, b)
+func (m *PushToIDReply) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PushToIDReply.Unmarshal(m, b)
 }
-func (m *AddFriendReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_AddFriendReply.Marshal(b, m, deterministic)
+func (m *PushToIDReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PushToIDReply.Marshal(b, m, deterministic)
 }
-func (m *AddFriendReply) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddFriendReply.Merge(m, src)
+func (m *PushToIDReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PushToIDReply.Merge(m, src)
 }
-func (m *AddFriendReply) XXX_Size() int {
-	return xxx_messageInfo_AddFriendReply.Size(m)
+func (m *PushToIDReply) XXX_Size() int {
+	return xxx_messageInfo_PushToIDReply.Size(m)
 }
-func (m *AddFriendReply) XXX_DiscardUnknown() {
-	xxx_messageInfo_AddFriendReply.DiscardUnknown(m)
+func (m *PushToIDReply) XXX_DiscardUnknown() {
+	xxx_messageInfo_PushToIDReply.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_AddFriendReply proto.InternalMessageInfo
+var xxx_messageInfo_PushToIDReply proto.InternalMessageInfo
+
+type PushToGroupRequest struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PushToGroupRequest) Reset()         { *m = PushToGroupRequest{} }
+func (m *PushToGroupRequest) String() string { return proto.CompactTextString(m) }
+func (*PushToGroupRequest) ProtoMessage()    {}
+func (*PushToGroupRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_33f3a5e1293a7bcd, []int{2}
+}
+
+func (m *PushToGroupRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PushToGroupRequest.Unmarshal(m, b)
+}
+func (m *PushToGroupRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PushToGroupRequest.Marshal(b, m, deterministic)
+}
+func (m *PushToGroupRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PushToGroupRequest.Merge(m, src)
+}
+func (m *PushToGroupRequest) XXX_Size() int {
+	return xxx_messageInfo_PushToGroupRequest.Size(m)
+}
+func (m *PushToGroupRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PushToGroupRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PushToGroupRequest proto.InternalMessageInfo
+
+type PushToGroupReply struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PushToGroupReply) Reset()         { *m = PushToGroupReply{} }
+func (m *PushToGroupReply) String() string { return proto.CompactTextString(m) }
+func (*PushToGroupReply) ProtoMessage()    {}
+func (*PushToGroupReply) Descriptor() ([]byte, []int) {
+	return fileDescriptor_33f3a5e1293a7bcd, []int{3}
+}
+
+func (m *PushToGroupReply) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PushToGroupReply.Unmarshal(m, b)
+}
+func (m *PushToGroupReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PushToGroupReply.Marshal(b, m, deterministic)
+}
+func (m *PushToGroupReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PushToGroupReply.Merge(m, src)
+}
+func (m *PushToGroupReply) XXX_Size() int {
+	return xxx_messageInfo_PushToGroupReply.Size(m)
+}
+func (m *PushToGroupReply) XXX_DiscardUnknown() {
+	xxx_messageInfo_PushToGroupReply.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PushToGroupReply proto.InternalMessageInfo
+
+// using in frontend.
+type PushToId struct {
+	Body                 []byte   `protobuf:"bytes,1,opt,name=body,proto3" json:"body,omitempty"`
+	To                   string   `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
+	Type                 MsgType  `protobuf:"varint,3,opt,name=type,proto3,enum=MsgType" json:"type,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PushToId) Reset()         { *m = PushToId{} }
+func (m *PushToId) String() string { return proto.CompactTextString(m) }
+func (*PushToId) ProtoMessage()    {}
+func (*PushToId) Descriptor() ([]byte, []int) {
+	return fileDescriptor_33f3a5e1293a7bcd, []int{4}
+}
+
+func (m *PushToId) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PushToId.Unmarshal(m, b)
+}
+func (m *PushToId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PushToId.Marshal(b, m, deterministic)
+}
+func (m *PushToId) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PushToId.Merge(m, src)
+}
+func (m *PushToId) XXX_Size() int {
+	return xxx_messageInfo_PushToId.Size(m)
+}
+func (m *PushToId) XXX_DiscardUnknown() {
+	xxx_messageInfo_PushToId.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PushToId proto.InternalMessageInfo
+
+func (m *PushToId) GetBody() []byte {
+	if m != nil {
+		return m.Body
+	}
+	return nil
+}
+
+func (m *PushToId) GetTo() string {
+	if m != nil {
+		return m.To
+	}
+	return ""
+}
+
+func (m *PushToId) GetType() MsgType {
+	if m != nil {
+		return m.Type
+	}
+	return MsgType_unknownMsgType
+}
 
 func init() {
-	proto.RegisterType((*AddFriendRequest)(nil), "AddFriendRequest")
-	proto.RegisterType((*AddFriendReply)(nil), "AddFriendReply")
+	proto.RegisterEnum("MsgType", MsgType_name, MsgType_value)
+	proto.RegisterType((*PushToIDRequest)(nil), "PushToIDRequest")
+	proto.RegisterType((*PushToIDReply)(nil), "PushToIDReply")
+	proto.RegisterType((*PushToGroupRequest)(nil), "PushToGroupRequest")
+	proto.RegisterType((*PushToGroupReply)(nil), "PushToGroupReply")
+	proto.RegisterType((*PushToId)(nil), "PushToId")
 }
 
 func init() { proto.RegisterFile("proto/message.proto", fileDescriptor_33f3a5e1293a7bcd) }
 
 var fileDescriptor_33f3a5e1293a7bcd = []byte{
-	// 199 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x2e, 0x28, 0xca, 0x2f,
-	0xc9, 0xd7, 0xcf, 0x4d, 0x2d, 0x2e, 0x4e, 0x4c, 0x4f, 0xd5, 0x03, 0xf3, 0x94, 0x16, 0x31, 0x72,
-	0x09, 0x38, 0xa6, 0xa4, 0xb8, 0x15, 0x65, 0xa6, 0xe6, 0xa5, 0x04, 0xa5, 0x16, 0x96, 0xa6, 0x16,
-	0x97, 0x08, 0x49, 0x71, 0x71, 0x14, 0xa7, 0xe6, 0xa5, 0xa4, 0x16, 0x79, 0xa6, 0x48, 0x30, 0x2a,
-	0x30, 0x6a, 0x30, 0x07, 0xc1, 0xf9, 0x42, 0x42, 0x5c, 0x2c, 0x25, 0xf9, 0x9e, 0x29, 0x12, 0x4c,
-	0x60, 0x71, 0x30, 0x1b, 0xa1, 0xde, 0x2f, 0x5f, 0x82, 0x59, 0x81, 0x51, 0x83, 0x33, 0x08, 0xce,
-	0x87, 0xa8, 0xf7, 0xcb, 0x97, 0x60, 0x01, 0x8b, 0x83, 0xd9, 0x20, 0xb1, 0x8c, 0xd4, 0xc4, 0x14,
-	0x09, 0x56, 0x88, 0x18, 0x88, 0x0d, 0x32, 0x23, 0x2f, 0x33, 0x39, 0x3b, 0x2f, 0x31, 0x37, 0x55,
-	0x82, 0x0d, 0x62, 0x06, 0x8c, 0xaf, 0x24, 0xc0, 0xc5, 0x87, 0xe4, 0xc6, 0x82, 0x9c, 0x4a, 0x23,
-	0x3b, 0x2e, 0x6e, 0xe7, 0xc4, 0x22, 0xcf, 0xdc, 0x80, 0xd2, 0xe2, 0x8c, 0xd4, 0x22, 0x21, 0x7d,
-	0x2e, 0x4e, 0xb8, 0x02, 0x21, 0x41, 0x3d, 0x74, 0x0f, 0x49, 0xf1, 0xeb, 0xa1, 0xea, 0x77, 0x62,
-	0x8f, 0x62, 0x05, 0xfb, 0x3f, 0x89, 0x0d, 0x4c, 0x19, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0x7c,
-	0x1b, 0x87, 0xbf, 0x1d, 0x01, 0x00, 0x00,
+	// 255 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x90, 0xcf, 0x4b, 0xc3, 0x30,
+	0x18, 0x86, 0x4d, 0xd7, 0x6d, 0xdd, 0xa7, 0x76, 0xd9, 0x37, 0x0f, 0x65, 0x78, 0x28, 0x3d, 0x15,
+	0x91, 0x08, 0x13, 0x8f, 0x1e, 0x94, 0x81, 0x08, 0x0a, 0x52, 0x8a, 0x07, 0x6f, 0x8e, 0x86, 0x39,
+	0xb4, 0xfd, 0x62, 0x93, 0xa0, 0xfd, 0xef, 0xa5, 0xd9, 0xfc, 0xb1, 0x7a, 0xca, 0x9b, 0x87, 0x37,
+	0xf0, 0x3e, 0x81, 0xa9, 0xaa, 0xc9, 0xd0, 0x59, 0x29, 0xb5, 0x7e, 0x5e, 0x49, 0xe1, 0x6e, 0xc9,
+	0x04, 0xc6, 0x0f, 0x56, 0xbf, 0xe4, 0x74, 0xbb, 0xc8, 0xe4, 0xbb, 0x95, 0xda, 0x24, 0x63, 0x38,
+	0xfc, 0x45, 0xea, 0xad, 0x49, 0x8e, 0x00, 0x37, 0xe0, 0xa6, 0x26, 0xab, 0xbe, 0x6b, 0x08, 0x7c,
+	0x87, 0xb6, 0xcd, 0x3b, 0x08, 0xb6, 0x4f, 0x0b, 0x44, 0xf0, 0x97, 0x54, 0x34, 0x11, 0x8b, 0x59,
+	0x7a, 0x90, 0xb9, 0x8c, 0x21, 0x78, 0x86, 0x22, 0x2f, 0x66, 0xe9, 0x28, 0xf3, 0x0c, 0xe1, 0x31,
+	0xf8, 0xa6, 0x51, 0x32, 0xea, 0xc5, 0x2c, 0x0d, 0xe7, 0x81, 0x28, 0xf5, 0x2a, 0x6f, 0x94, 0xcc,
+	0x1c, 0x3d, 0xb9, 0x84, 0xe1, 0x16, 0x20, 0x42, 0x68, 0xab, 0xd7, 0x8a, 0x3e, 0xaa, 0xfb, 0x0d,
+	0xe1, 0x7b, 0x18, 0x80, 0x9f, 0xcb, 0x4f, 0xc3, 0x19, 0x8e, 0xa0, 0x7f, 0x65, 0x8b, 0x35, 0x71,
+	0xaf, 0x8d, 0x8f, 0xeb, 0x42, 0x12, 0xef, 0xcd, 0x4b, 0x18, 0xb4, 0x63, 0x64, 0x8d, 0xa7, 0x3f,
+	0xb3, 0x16, 0xc8, 0x45, 0xc7, 0x77, 0x16, 0x8a, 0x1d, 0x5d, 0xbc, 0x80, 0xfd, 0x3f, 0x62, 0x38,
+	0x15, 0xff, 0xe5, 0x67, 0x13, 0xd1, 0x75, 0xbf, 0x1e, 0x3e, 0xf5, 0xdd, 0x97, 0x2e, 0x07, 0xee,
+	0x38, 0xff, 0x0a, 0x00, 0x00, 0xff, 0xff, 0x8a, 0xd1, 0xea, 0xe4, 0x70, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -166,72 +274,108 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// CarImPusherClient is the client API for CarImPusher service.
+// PusherClient is the client API for Pusher service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type CarImPusherClient interface {
-	AddFriend(ctx context.Context, in *AddFriendRequest, opts ...grpc.CallOption) (*AddFriendReply, error)
+type PusherClient interface {
+	PushToID(ctx context.Context, in *PushToIDRequest, opts ...grpc.CallOption) (*PushToIDReply, error)
+	PushToGroup(ctx context.Context, in *PushToGroupRequest, opts ...grpc.CallOption) (*PushToGroupReply, error)
 }
 
-type carImPusherClient struct {
+type pusherClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewCarImPusherClient(cc *grpc.ClientConn) CarImPusherClient {
-	return &carImPusherClient{cc}
+func NewPusherClient(cc *grpc.ClientConn) PusherClient {
+	return &pusherClient{cc}
 }
 
-func (c *carImPusherClient) AddFriend(ctx context.Context, in *AddFriendRequest, opts ...grpc.CallOption) (*AddFriendReply, error) {
-	out := new(AddFriendReply)
-	err := c.cc.Invoke(ctx, "/CarImPusher/AddFriend", in, out, opts...)
+func (c *pusherClient) PushToID(ctx context.Context, in *PushToIDRequest, opts ...grpc.CallOption) (*PushToIDReply, error) {
+	out := new(PushToIDReply)
+	err := c.cc.Invoke(ctx, "/Pusher/PushToID", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// CarImPusherServer is the server API for CarImPusher service.
-type CarImPusherServer interface {
-	AddFriend(context.Context, *AddFriendRequest) (*AddFriendReply, error)
+func (c *pusherClient) PushToGroup(ctx context.Context, in *PushToGroupRequest, opts ...grpc.CallOption) (*PushToGroupReply, error) {
+	out := new(PushToGroupReply)
+	err := c.cc.Invoke(ctx, "/Pusher/PushToGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
-// UnimplementedCarImPusherServer can be embedded to have forward compatible implementations.
-type UnimplementedCarImPusherServer struct {
+// PusherServer is the server API for Pusher service.
+type PusherServer interface {
+	PushToID(context.Context, *PushToIDRequest) (*PushToIDReply, error)
+	PushToGroup(context.Context, *PushToGroupRequest) (*PushToGroupReply, error)
 }
 
-func (*UnimplementedCarImPusherServer) AddFriend(ctx context.Context, req *AddFriendRequest) (*AddFriendReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddFriend not implemented")
+// UnimplementedPusherServer can be embedded to have forward compatible implementations.
+type UnimplementedPusherServer struct {
 }
 
-func RegisterCarImPusherServer(s *grpc.Server, srv CarImPusherServer) {
-	s.RegisterService(&_CarImPusher_serviceDesc, srv)
+func (*UnimplementedPusherServer) PushToID(ctx context.Context, req *PushToIDRequest) (*PushToIDReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PushToID not implemented")
+}
+func (*UnimplementedPusherServer) PushToGroup(ctx context.Context, req *PushToGroupRequest) (*PushToGroupReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PushToGroup not implemented")
 }
 
-func _CarImPusher_AddFriend_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddFriendRequest)
+func RegisterPusherServer(s *grpc.Server, srv PusherServer) {
+	s.RegisterService(&_Pusher_serviceDesc, srv)
+}
+
+func _Pusher_PushToID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PushToIDRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CarImPusherServer).AddFriend(ctx, in)
+		return srv.(PusherServer).PushToID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/CarImPusher/AddFriend",
+		FullMethod: "/Pusher/PushToID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CarImPusherServer).AddFriend(ctx, req.(*AddFriendRequest))
+		return srv.(PusherServer).PushToID(ctx, req.(*PushToIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _CarImPusher_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "CarImPusher",
-	HandlerType: (*CarImPusherServer)(nil),
+func _Pusher_PushToGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PushToGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PusherServer).PushToGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Pusher/PushToGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PusherServer).PushToGroup(ctx, req.(*PushToGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Pusher_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "Pusher",
+	HandlerType: (*PusherServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddFriend",
-			Handler:    _CarImPusher_AddFriend_Handler,
+			MethodName: "PushToID",
+			Handler:    _Pusher_PushToID_Handler,
+		},
+		{
+			MethodName: "PushToGroup",
+			Handler:    _Pusher_PushToGroup_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
