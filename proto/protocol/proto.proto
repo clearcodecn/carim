@@ -1,0 +1,10 @@
+syntax = "proto3";
+package protocol;
+
+option go_package = "protocol";
+
+message Message {
+  int32 Operate = 1;
+  int32 Version = 2;
+  bytes body = 3;
+}

@@ -1,0 +1,26 @@
+{
+  "orderDetail": {
+    "activityId": "5f731149e4b0804576a6d512",
+    "ticketId": "1dc1138c94124b76aca88fbb7bb62dee",
+    "ticketType": 1,
+    "num": "1",
+    "goodsType": 1,
+    "price": 80
+  },
+  "areaCode": "86_CN",
+  "telephone": "18529570908",
+  "orderPerformers": "[{\"documentNumber\":\"46000319930808741X\",\"documentType\":1,\"documentTypeStr\":\"身份证\",\"id\":1704172,\"isSelf\":1,\"name\":\"陈康\",\"showDocumentNumber\":\"460003199******41X\",\"updateAuditStatus\":0,\"userId\":3242612,\"selected\":true}]",
+  "customerName": "冼登辉",
+  "provinceName": "广东",
+  "cityName": "深圳",
+  "address": "宝安西乡盐田新二村191栋406",
+  "teamId": "",
+  "couponId": "",
+  "checkCode": "",
+  "formToken": "1603702971413uoH14KNrQEz67yp37D1J",
+  "payPlatName": "alipaywap",
+  "st_flpv": "16037026840051Abn2M3WGqYyVI2H7lIX",
+  "sign": "133f2b9e91ad50d43c31437eb12842f2",
+  "trackPath": "",
+  "terminal": "wap"
+}
