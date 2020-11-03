@@ -12,6 +12,7 @@ const (
 	OpKnown = iota
 	OpMessage
 	OpCommand
+	OpAuthenticate
 	OpHeartBeat
 )
 
@@ -25,7 +26,7 @@ var (
 )
 
 // ReadFrom read from buf and marshal message to protocol
-func (m *Message) ReadFrom(r *bufio.Reader) (int64, error) {
+func (m *Message) ReadFrom(r *bufio.Reader) (int, error) {
 	var (
 		header     = make([]byte, headerSize)
 		bodyLength int
@@ -38,13 +39,14 @@ func (m *Message) ReadFrom(r *bufio.Reader) (int64, error) {
 	body = make([]byte, bodyLength)
 	n, err = io.ReadFull(r, body)
 	if err != nil {
-		return headerSize + int64(n), err
+		return headerSize + n, err
 	}
 	err = proto.Unmarshal(body, m)
-	return int64(headerSize + bodyLength), err
+	return headerSize + bodyLength, err
 }
 
-func (m *Message) WriteTo(w *bufio.Writer) (int64, error) {
+// WriteTo write message to buf
+func (m *Message) WriteTo(w *bufio.Writer) (int, error) {
 	msg, err := proto.Marshal(m)
 	if err != nil {
 		return 0, err
@@ -62,11 +64,11 @@ func (m *Message) WriteTo(w *bufio.Writer) (int64, error) {
 	}
 	nn, err := w.Write(msg)
 	if err != nil {
-		return int64(n), err
+		return n, err
 	}
 	if err = w.Flush(); err != nil {
 		return 0, err
 	}
 
-	return int64(nn + n), nil
+	return nn + n, nil
 }

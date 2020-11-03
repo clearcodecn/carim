@@ -1,0 +1,7 @@
+POST http://localhost:6000
+Content-Type: application/json
+
+{
+  "method": "com.demo.queryUser",
+  "data": "{\"username\":\"小蔡\"}"
+}
