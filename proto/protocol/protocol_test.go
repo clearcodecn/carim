@@ -15,13 +15,12 @@ func TestReadWriter(t *testing.T) {
 
 	buf := bytes.NewBuffer(nil)
 	rw := bufio.NewWriter(buf)
-	n, err := msg.WriteTo(rw)
+	n, err := Write(rw, msg)
 	require.Nil(t, err)
 	t.Logf("length: %d", n)
 
-	var msg2 = new(Message)
 	r := bufio.NewReader(buf)
-	n2, err := msg2.ReadFrom(r)
+	n2, _, err := Read(r)
 	require.Nil(t, err)
 
 	require.Equal(t, n, n2)

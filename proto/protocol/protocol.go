@@ -26,27 +26,28 @@ var (
 )
 
 // ReadFrom read from buf and marshal message to protocol
-func (m *Message) ReadFrom(r *bufio.Reader) (int, error) {
+func Read(r *bufio.Reader) (int, *Message, error) {
 	var (
 		header     = make([]byte, headerSize)
 		bodyLength int
 		err        error
 		body       []byte
 		n          int
+		m          = new(Message)
 	)
 	_, err = io.ReadFull(r, header)
 	bodyLength = int(binary.BigEndian.Uint16(header))
 	body = make([]byte, bodyLength)
 	n, err = io.ReadFull(r, body)
 	if err != nil {
-		return headerSize + n, err
+		return headerSize + n, nil, err
 	}
 	err = proto.Unmarshal(body, m)
-	return headerSize + bodyLength, err
+	return headerSize + bodyLength, nil, err
 }
 
 // WriteTo write message to buf
-func (m *Message) WriteTo(w *bufio.Writer) (int, error) {
+func Write(w *bufio.Writer, m *Message) (int, error) {
 	msg, err := proto.Marshal(m)
 	if err != nil {
 		return 0, err

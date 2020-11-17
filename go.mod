@@ -13,8 +13,11 @@ require (
 	github.com/gogo/protobuf v1.2.1
 	github.com/golang/protobuf v1.4.2
 	github.com/gomodule/redigo/redis v0.0.0-20200429221454-e14091dffc1b // indirect
+	github.com/hashicorp/consul/api v1.7.0
 	github.com/lib/pq v1.8.0
 	github.com/mattn/go-sqlite3 v1.14.3
+	github.com/micro/go-micro v1.18.0 // indirect
+	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.6.0
 	github.com/stretchr/testify v1.6.1
 	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9

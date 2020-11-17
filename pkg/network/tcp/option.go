@@ -27,4 +27,21 @@ func WithAddress(addr string) Option {
 type Options struct {
 	timeout time.Duration
 	address string
+
+	writeBufferSize int
+	readBufferSize  int
+}
+
+type ConnectionOption func(conn *Connection)
+
+func ReadBufferSize(s int) ConnectionOption {
+	return func(conn *Connection) {
+		conn.readBufferSize = s
+	}
+}
+
+func WriteBufferSize(s int) ConnectionOption {
+	return func(conn *Connection) {
+		conn.writeBufferSize = s
+	}
 }

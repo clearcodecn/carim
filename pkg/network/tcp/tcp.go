@@ -3,8 +3,11 @@ package tcp
 import (
 	"context"
 	"github.com/clearcodecn/carim/pkg/atomic"
+	"github.com/clearcodecn/carim/pkg/network"
+	"github.com/clearcodecn/carim/proto/protocol"
 	"github.com/sirupsen/logrus"
 	"net"
+	"sync"
 	"time"
 )
 
@@ -17,7 +20,10 @@ type Server struct {
 
 	isShutdown *atomic.Bool
 
-	ctx context.Context
+	ctx   context.Context
+	mutex sync.RWMutex
+
+	connections map[string][]network.Connection
 }
 
 func NewServer(opts ...Option) *Server {
@@ -65,6 +71,39 @@ func (s *Server) Serve(stop chan struct{}) error {
 			return err
 		}
 
-
+		go s.acceptConnection(conn)
 	}
+}
+
+func (s *Server) acceptConnection(conn net.Conn) {
+	var (
+		readBuf  = make(chan *protocol.Message, s.option.readBufferSize)
+		writeBuf = make(chan *protocol.Message, s.option.writeBufferSize)
+	)
+	connection, err := NewConn(s.ctx, conn, s, readBuf, writeBuf)
+	if err != nil {
+		s.logger.WithError(err).Errorf("create connection failed")
+		return
+	}
+
+	defer func() {
+		if s.OnConnectionClose != nil {
+			s.OnConnectionClose(connection)
+		}
+		connection.Close()
+	}()
+
+	_, user, err := connection.Authentication()
+	if err != nil {
+		s.logger.WithError(err).Errorf("authenticate failed")
+		return
+	}
+
+	s.mutex.Lock()
+	if _, ok := s.connections[user.ID()]; !ok {
+		s.connections[user.ID()] = make([]network.Connection, 0)
+	}
+	s.connections[user.ID()] = append(s.connections[user.ID()], connection)
+	s.mutex.Unlock()
+
 }
